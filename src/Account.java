@@ -15,6 +15,12 @@ public abstract class Account {
             System.out.println("Deposited: $" + amount);
         }
     }
+    @Override
+    public String toString() {
+        return String.format("Type: %s | ID: %s | Holder: %s | Balance: $%.2f",
+                this.getClass().getSimpleName(), accountNumber, accountHolder, balance);
+    }
+
     public abstract boolean withdraw(double amount);
 
     //Getters
