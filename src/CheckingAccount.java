@@ -12,6 +12,7 @@ public class CheckingAccount extends Account {
         // Check if the withdrawal keeps us within the overdraft limit
         if (amount <= balance + overdraftLimit) {
             balance -= amount;
+            recordTransaction("Withdrawal", amount);
             System.out.println("Withdrawn from Checking: $" + amount);
             System.out.println("Current Balance: $" + balance);
             return true;

@@ -17,6 +17,7 @@ public class SavingsAccount extends Account {
     public boolean withdraw(double amount) {
         if (amount <= balance) {
             balance -= amount;
+            recordTransaction("Withdrawal", amount);
             System.out.println("Withdrawn from Savings: $" + amount);
             return true;
         } else {

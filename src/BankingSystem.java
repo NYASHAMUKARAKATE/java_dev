@@ -17,7 +17,7 @@ public class BankingSystem {
             System.out.println("5. Transfer");
             System.out.println("6. Display All Accounts");
             System.out.println("7. Exit");
-
+            System.out.println("8. View Transactions");
 
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -33,6 +33,7 @@ public class BankingSystem {
                     running = false;
                     System.out.println("Thank you for using our bank. Goodbye!");
                 }
+                case 8 -> handleViewStatement();
                 default -> System.out.println("Invalid choice. Try again.");
             }
         }
@@ -88,5 +89,16 @@ public class BankingSystem {
         double amount = scanner.nextDouble();
 
         bank.transfer(from, to, amount);
+    }
+    private static void handleViewStatement() {
+        System.out.print("Enter Account Number: ");
+        String num = scanner.nextLine();
+
+        Account acc = bank.findAccount(num);
+        if (acc != null) {
+            acc.printStatement();
+        } else {
+            System.out.println("Account not found.");
+        }
     }
 }
