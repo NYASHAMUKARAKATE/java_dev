@@ -1,11 +1,11 @@
-// Automatically switch between local backend and production backend
+
 const IS_LOCAL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 const API_BASE = IS_LOCAL 
     ? 'http://localhost:8080/api/queue' 
-    : 'https://queueless-api.onrender.com/api/queue'; // TODO: Replace with your actual backend URL after deploying
+    : 'https://java-dev-65kf.onrender.com'; 
 
 
-// DOM Elements
+
 const elements = {
     form: document.getElementById('issue-ticket-form'),
     nameInput: document.getElementById('customer-name'),
@@ -19,20 +19,20 @@ const elements = {
     waitTimesList: document.getElementById('wait-times-list')
 };
 
-// Queue Lists and Badges
+
 const queues = {
     PAYMENTS: { list: document.getElementById('list-payments'), badge: document.getElementById('badge-payments') },
     SUPPORT: { list: document.getElementById('list-support'), badge: document.getElementById('badge-support') },
     ACCOUNTS: { list: document.getElementById('list-accounts'), badge: document.getElementById('badge-accounts') }
 };
 
-// Main Init function
+
 document.addEventListener('DOMContentLoaded', () => {
     refreshAllData();
     setInterval(refreshAllData, 5000); // Auto-refresh every 5 seconds
 });
 
-// Event Listeners
+
 elements.form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const name = elements.nameInput.value.trim();
@@ -44,7 +44,7 @@ elements.form.addEventListener('submit', async (e) => {
     elements.btnIssue.textContent = 'Issuing...';
 
     try {
-        // Since it accepts RequestParams, we send as URLSearchParams
+        
         const params = new URLSearchParams();
         params.append('name', name);
         params.append('type', type);
@@ -187,7 +187,7 @@ window.callNextCustomer = async (counterNumber) => {
         
         if(response.ok) {
             const ticket = await response.text();
-            if(ticket) { // Non-empty means someone was called
+            if(ticket) { 
                 const tData = JSON.parse(ticket);
                 showAlert(`Counter ${counterNumber} is now serving ${tData.ticketNumber}`, false);
             } else {
@@ -210,11 +210,11 @@ function showAlert(msg, isError = false) {
     }, 4000);
 }
 
-// Utility animation for numbers
+
 function updateCounterAnimation(el, newValue) {
     if(el.textContent != newValue) {
         el.style.transform = 'scale(1.2) translateY(-2px)';
-        el.style.color = '#ef4444'; // turn red briefly on change
+        el.style.color = '#ef4444'; 
         setTimeout(() => {
             el.textContent = newValue;
             el.style.transform = 'scale(1) translateY(0)';
