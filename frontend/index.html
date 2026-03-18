@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queueless | Smart Queue Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="app-container">
+        
+        <!-- Header -->
+        <header class="glass-panel">
+            <div class="logo">
+                <span class="logo-icon">Q</span>
+                <h1>Queueless</h1>
+            </div>
+            <div class="system-status">
+                <div class="stat-pill">
+                    <span class="stat-label">Waiting</span>
+                    <span id="stat-waiting" class="stat-value">0</span>
+                </div>
+                <div class="stat-pill">
+                    <span class="stat-label">Served</span>
+                    <span id="stat-served" class="stat-value">0</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="dashboard-grid">
+            
+            <!-- Left Column: Customer Actions & Queues -->
+            <div class="left-column">
+                
+                <section class="glass-panel issue-ticket-section">
+                    <h2>Issue Ticket</h2>
+                    <form id="issue-ticket-form">
+                        <div class="input-group">
+                            <input type="text" id="customer-name" placeholder="Customer Name" required autocomplete="off">
+                        </div>
+                        <div class="input-group">
+                            <select id="service-type" required>
+                                <option value="" disabled selected>Select Service</option>
+                                <option value="PAYMENTS">Payments</option>
+                                <option value="SUPPORT">Support</option>
+                                <option value="ACCOUNTS">Accounts</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-primary" id="btn-issue">Get Ticket</button>
+                    </form>
+                    <div id="new-ticket-alert" class="alert hidden"></div>
+                </section>
+
+                <section class="glass-panel queues-section">
+                    <div class="section-header">
+                        <h2>Live Queues</h2>
+                        <button class="btn-icon" id="btn-refresh-queues" title="Refresh">↻</button>
+                    </div>
+                    
+                    <div class="queues-container">
+                        <!-- Payments Queue -->
+                        <div class="queue-column">
+                            <h3>Payments <span class="badge" id="badge-payments">0</span></h3>
+                            <ul class="ticket-list" id="list-payments">
+                                <!-- Tickets injected by JS -->
+                            </ul>
+                        </div>
+                        <!-- Support Queue -->
+                        <div class="queue-column">
+                            <h3>Support <span class="badge" id="badge-support">0</span></h3>
+                            <ul class="ticket-list" id="list-support">
+                            </ul>
+                        </div>
+                        <!-- Accounts Queue -->
+                        <div class="queue-column">
+                            <h3>Accounts <span class="badge" id="badge-accounts">0</span></h3>
+                            <ul class="ticket-list" id="list-accounts">
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- Right Column: Counters & Serving -->
+            <div class="right-column">
+                
+                <section class="glass-panel counters-section">
+                    <h2>Counter Operations</h2>
+                    <p class="subtitle">Agent Dashboard</p>
+                    
+                    <div class="counters-grid" id="counters-grid">
+                        <!-- Counters injected by JS -->
+                        <div class="counter-card loading-skeleton"></div>
+                        <div class="counter-card loading-skeleton"></div>
+                        <div class="counter-card loading-skeleton"></div>
+                    </div>
+                </section>
+                
+                <section class="glass-panel wait-times-section">
+                    <h2>Estimated Wait Times</h2>
+                    <div class="wait-times-list" id="wait-times-list">
+                        <!-- Wait times injected by JS -->
+                        <p class="empty-state">No customers in queue</p>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
