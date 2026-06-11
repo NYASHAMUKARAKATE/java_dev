@@ -12,6 +12,9 @@ public class SavingsAccount extends Account {
         System.out.println("Interest applied: $" + interest);
     }
 
+    public double getInterestRate() {
+        return interestRate;
+    }
 
     @Override
     public boolean withdraw(double amount) {

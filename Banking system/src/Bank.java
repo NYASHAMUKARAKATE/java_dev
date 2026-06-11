@@ -49,4 +49,12 @@ public class Bank {
             }
         }
     }
+
+    public void loadFromFile() {
+        this.accounts = FileHandler.loadAccounts();
+    }
+
+    public void saveToFile() {
+        FileHandler.saveAccounts(this.accounts);
+    }
 }
